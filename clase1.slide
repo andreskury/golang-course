@@ -1,0 +1,207 @@
+Golang para Programadores
+Clase 1 - Aspectos generales del lenguaje
+
+Jonathan Leibiusky
+CTO, iúnigo
+jonas@iunigo.com
+https://iunigo.com.ar
+@xetorthio
+
+* Bienvenidos!
+
+Qué es Go?
+
+- Go (Golang) es un lenguaje estático, compilado diseñado por Google.
+- Es similar a C, pero con manejo seguro de memoria.
+- Es importante organizar el código en el lugar correcto.
+
+Instalemos Go!
+.code clase1/version.go
+
+.image https://miro.medium.com/max/600/1*yh90bW8jL4f8pOTZTvbzqw.png
+
+* Escribamos un Hola Mundo!
+
+Se compila con `go build` o se puede ejecutar directamente con `go run`.
+
+.play -edit -numbers clase1/hola.go
+
+* Importando paquetes
+
+Se importan paquetes con `import`.
+
+Se le puede dar un nombre al paquete o importar de forma anónima.
+
+Si el paquete no está en el `GOPATH` lo podés instalar con `go get`.
+
+Sólo se pueden exportar las cosas que empiezan en mayúscula.
+
+.play -edit -numbers clase1/imports.go
+
+* Funciones
+
+Se usa el keyword `func` y se definen parámetros y retornos con tipos.
+
+.play -edit -numbers clase1/funcs1.go
+
+* Funciones
+
+Se pueden omitir el tipo de los parámetros cuando se repite el tipo.
+
+.play -edit -numbers clase1/funcs2.go
+
+* Funciones
+
+Se pueden retornar varios valores.
+
+.play -edit -numbers clase1/funcs3.go
+
+* Funciones
+
+Los retornos pueden referenciarse con nombres.
+
+.play -edit -numbers clase1/funcs4.go
+
+* Funciones
+
+Las funciones pueden ser variables.
+
+Y también pueden ser anónimas.
+
+.play -edit -numbers clase1/funcs5.go
+
+* Variables y asignaciones
+
+Las variables se declaran con `var`.
+
+Se puede usar `:=` para que el compilador infiera el tipo.
+
+Para definir constantes se usa `const`.
+
+.play -edit -numbers clase1/vars.go
+
+* Tipos
+
+Todos los tipos tienen un `zero`.
+
+.code clase1/types.go
+
+* Repetitiva
+
+Sólo existe el `for`.
+
+.play -edit -numbers clase1/for.go
+
+* Repetitiva
+
+Se puede eliminar la primera y última parte del for.
+
+.play -edit -numbers clase1/for2.go
+
+* Repetitiva
+
+Se puede dejar totalmente sólo.
+
+.play -edit -numbers clase1/for3.go
+
+* Conditional
+
+Para hacer condicionales se usa el `if`.
+
+.play -edit -numbers clase1/if.go
+
+* Conditional
+
+Se puede agregar una asignación inicial.
+
+.play -edit -numbers clase1/if2.go
+
+* Defer
+
+Se puede especificar una función que se ejecuta cuando se termina la función actual.
+
+.play -edit -numbers clase1/defer.go
+
+* Defer
+
+Se pueden tener varias funciones diferidas.
+
+Se ejecutan desde la última a la primera (es un stack).
+
+.play -edit -numbers clase1/defer2.go
+
+* Valores vs Referencias
+
+Se puede obtener un puntero con `&`.
+
+Se puede desreferenciar un puntero con `*`.
+
+El zero de un puntero es `nil`.
+
+.play -edit -numbers clase1/ptr.go
+
+* Estructuras
+
+Se agrupan varios tipos de datos.
+
+Hay elementos que se pueden exportar y elementos que no.
+
+El zero de una estructrua es el Zero de los elementos que la componen.
+
+.play -edit -numbers clase1/struct.go
+
+* Arrays
+
+Los arrays en go tienen un tamaño.
+
+El zero de un array es el zero de su tipo en todas las posiciones.
+
+Se puede obtener el tamaño de un array con `len`.
+
+.play -edit -numbers clase1/arrays.go
+
+* Slices
+
+Los slices es una estructura clave en go.
+
+Son una forma mucho más poderosa de trabajar con arrays.
+
+Se puede utilizar `append` para agregar elementos a un slice.
+
+.play -edit -numbers clase1/slices.go
+
+* Maps
+
+Es el tipo de dato asociativo (conocido como Hash o Dictionary).
+
+Se puede ver el tamaño con `len`.
+
+Se puede eliminar un elemento con `delete`.
+
+.play -edit -numbers clase1/maps.go
+
+* Range
+
+Se pueden iterar Slices y Maps con `for` y `range`.
+
+.play -edit -numbers clase1/iter.go
+
+* Funciones sobre estructuras
+
+Las estructuras pueden definir funciones.
+
+.play -edit -numbers clase1/struct_funcs.go
+
+* Funciones sobre estructuras
+
+Las funciones pueden estar definidas la referencia para modificar sus valores.
+
+.play -edit -numbers clase1/struct_funcs2.go
+
+* Interfaces
+
+Las interfaces indican funciones que una estructura debería implementar.
+
+Las implementaciones on implícitas.
+
+.play -edit -numbers clase1/interface.go
