@@ -1,0 +1,141 @@
+Golang para Programadores
+Clase 2 - Concurrencia
+
+Jonathan Leibiusky
+CTO, iúnigo
+jonas@iunigo.com
+https://iunigo.com.ar
+@xetorthio
+
+* Recap
+
+Qué es lo que ya sabemos?
+
+- Variables, constantes, tipos
+- Funciones
+- Referencias y valores
+- Estructuras e interfaces
+
+.image https://miro.medium.com/max/600/1*yh90bW8jL4f8pOTZTvbzqw.png
+
+* Nos faltó algo?
+
+* Errores
+
+Los errores en Go son explícitos.
+
+Por convención son el último valor que se retorna de una función.
+
+Se construyen con `errors.New`.
+
+Retornar `nil` quiere decir que no hubo error.
+
+Se pueden retornar errores custom implementando `Error() string`
+
+* Errores (ejemplo)
+
+.play -edit -numbers clase2/errors.go
+
+* Errores (ejemplo 2
+
+.play -edit -numbers clase2/errors2.go
+
+* Goroutines
+
+Es la capacidad de tener funciones corriendo de forma "simultánea".
+
+En existen las `goroutines`, que son un hilo de ejecución muy liviano.
+
+Se invoca una función en una nueva `goroutine` con `go`.
+
+Se pueden iniciar funciones anónimas.
+
+* Channels
+
+Los `channels` son como tuberías que conectan goroutines.
+
+Podés enviar valores desde un extremo y recibirlos desde el otro.
+
+Para enviar y recibir se utilizar el operador `<-`.
+
+.play -edit -numbers clase2/channels.go
+
+* Channel Buffering
+
+Por defecto los `channels` no tienen buffer.
+
+Los `buffered channels` permiten enviar valores sin esperar a que haya un receptor del otro lado.
+
+.play -edit -numbers clase2/buffered_channels.go
+
+* Channel Synchronization
+
+Se pueden utilizar channels para sincronizar la ejecución de goroutines.
+
+.play -edit -numbers clase2/channel_synchronization.go
+
+* Channel Direction
+
+Cuando se pasan los `channels` como parámetro se puede especificar una dirección. Esto incrementa el `type-safety` del programa.
+
+.play -edit -numbers clase2/channel_direction.go
+
+* Select
+
+`select` te permite esperar valores de múltiples channels.
+
+.play -edit -numbers clase2/select.go
+
+* Timeouts
+
+Para muchas cosas es importante incorporar timeouts. En especial cuando tenemos goroutines que hacen cosas con recursos externos.
+
+.play -edit -numbers clase2/timeouts.go
+
+* Non-Blocking Channel Oprations
+
+Las operaciones con channels son bloqueantes.
+
+Podemos usar el `default` del `select` para que no sean bloqueantes.
+
+.play -edit -numbers clase2/non_blocking_channels.go
+
+* Closing Channels
+
+Hacer un `close` a un channel le indica que no se enviarán más valores.
+
+.play -edit -numbers clase2/closing_channels.go
+
+* Range sobre Channels
+
+Se puede usar `range` sobre channels.
+
+.play -edit -numbers clase2/range_sobre_channels.go
+
+* WaitGroups
+
+Para esperar a muchas goroutines se puede usar `WaitGroup`.
+
+Se debe pasar `WaitGroup` por referencia.
+
+.play -edit -numbers clase2/wait_groups.go
+
+* Mutex
+
+Para poder tener un estado compartido entre goroutines se usa `mutex`.
+
+Se puede usar `go test -race` para detectar condiciones de carrera.
+
+.play -edit -numbers clase2/mutex.go
+
+* Ejercicio
+
+- Minar iuni-coin
+  1. Implementar `func MineBlock(block string, difficulty int) (hash, pivot string)`
+     (debe usar SHA256).
+  2. Tener 5 mineros.
+  3. Premiar al primer que mina un bloque correctamente.
+
+- Franela crawler
+  1. Implementar `func GetLinks(url string) ([]string, error)`.
+  2. Implementar un crawler concurrente que traiga sin repeticiones todas las URLs de un sitio.
