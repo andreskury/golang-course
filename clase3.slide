@@ -57,3 +57,15 @@ A partir de go 1.11 se introduce una forma oficial y m√°s elegante para crear m√
   $ go mod init
   $ go list -m all
   $ go mod tidy
+
+* Dockerfile
+
+  FROM golang:1.10
+  COPY . /go/src/github.com/iunigo/chapi
+  WORKDIR /go/src/github.com/iunigo/chapi
+  RUN go build -o /go/bin/chapi .
+  FROM alpine
+  RUN apk --update add ca-certificates
+  RUN mkdir -p /app/
+  COPY --from=0 /go/bin/chapi /app/chapi
+  WORKDIR /app
