@@ -1,0 +1,59 @@
+Golang para Programadores
+Clase 3 - Módulos y paquetes
+
+Jonathan Leibiusky
+CTO, iúnigo
+jonas@iunigo.com
+https://iunigo.com.ar
+@xetorthio
+
+* Recap
+
+Qué es lo que ya sabemos?
+
+- Variables, constantes, tipos
+- Funciones
+- Referencias y valores
+- Estructuras e interfaces
+- Concurrencia: channels, waitgroups, mutex
+
+.image https://miro.medium.com/max/600/1*yh90bW8jL4f8pOTZTvbzqw.png
+
+* Import
+
+Con `import` se pueden importar paquetes para usar en tu programa.
+
+La función `init` se ejecuta cuando se importa el paquete por primera vez.
+
+Hay varias formas de importar.
+
+  import . "fmt"
+  import _ "io"
+  import log "github.com/sirupsen/logrus"
+  import m "math"
+
+* Package
+
+Un paquete se declara con el keyword `package`.
+
+  package foobar
+
+* Go get
+
+Para obtener paquetes se usa `go get`.
+
+  go get github.com/fatih/color
+
+* Import path 
+
+Los paquetes se importan del `GOPATH` o de la librería estandar.
+
+También se pueden tener en la carpeta `vendor`.
+
+* Modules
+
+A partir de go 1.11 se introduce una forma oficial y más elegante para crear módulos.
+
+  $ go mod init
+  $ go list -m all
+  $ go mod tidy

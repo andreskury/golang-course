@@ -131,10 +131,11 @@ Se puede usar `go test -race` para detectar condiciones de carrera.
 * Ejercicio
 
 - Minar iuni-coin
-  1. Implementar `func MineBlock(block string, difficulty int) (hash, pivot string)`
+  1. Implementar `func MineBlock(block string, difficulty int) (hash string, pivot int)`
      (debe usar SHA256).
-  2. Tener 5 mineros.
-  3. Premiar al primer que mina un bloque correctamente.
+  2. Implementar `func ValidateBlock(block string, difficulty int, pivot int) bool`
+  3. Tener 5 mineros.
+  4. Premiar al primer que mina un bloque correctamente.
 
 - Franela crawler
   1. Implementar `func GetLinks(url string) ([]string, error)`.
