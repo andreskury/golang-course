@@ -37,3 +37,13 @@ El paquete `http` permite crear clientes http.
 El paquete `http` también permite crear servidores http.
 
 .play -edit -numbers clase4/http_server.go
+
+* Http Multiplexer
+
+La idea de multiplexar requests http es decidir a qué función invocar dependiendo del request que se hace.
+
+Go viene con un multiplexador básico.
+
+Uno de los más utilizados es `gorilla mux`.
+
+Uno de los más eficientes es `http router`.

@@ -2,9 +2,13 @@ package main
 
 import "net/http"
 
-func createUser(w http.ResponseWriter, r *http.Request) {
+type handler struct {
+}
+
+func (h handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/users", createUser)
+	h := handler{}
+	http.ListenAndServe(":8080", h)
 }
