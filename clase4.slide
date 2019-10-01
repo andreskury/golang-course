@@ -47,3 +47,45 @@ Go viene con un multiplexador básico.
 Uno de los más utilizados es `gorilla mux`.
 
 Uno de los más eficientes es `http router`.
+
+* DB
+
+El paquete `sql` provee todo lo necesario para trabajar con bases de datos SQL.
+
+Vamos a instalar el driver de `mysql`:
+
+  go get -u github.com/go-sql-driver/mysql
+
+Y ahora vamos a crear una conexión a la DB:
+
+  import "database/sql"
+  import _ "github.com/go-sql-driver/mysql"
+
+  db, err := sql.Open("mysql", "user:password@/dbname")
+  defer db.Close()
+
+* DB - Insert
+
+  insert, err := db.Query("INSERT INTO test VALUES ( 2, 'TEST' )")
+
+  if err != nil {
+    ...
+  }
+
+  defer insert.Close()
+
+* DB - Select
+
+  results, err := db.Query("SELECT id, name FROM tags")
+  if err != nil {
+    ...
+  }
+
+  for results.Next() {
+    var tag Tag
+
+    err = results.Scan(&tag.ID, &tag.Name)
+    if err != nil {
+      ...
+    }
+  }
