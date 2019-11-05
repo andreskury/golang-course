@@ -1,0 +1,91 @@
+Golang para Programadores
+Clase 4 - Web Service
+
+Jonathan Leibiusky
+CTO, iúnigo
+jonas@iunigo.com
+https://iunigo.com.ar
+@xetorthio
+
+* Recap
+
+Qué es lo que ya sabemos?
+
+- Variables, constantes, tipos
+- Funciones
+- Referencias y valores
+- Estructuras e interfaces
+- Concurrencia: channels, waitgroups, mutex
+- Paquetes y Módulos
+
+.image https://miro.medium.com/max/600/1*yh90bW8jL4f8pOTZTvbzqw.png
+
+* Json
+
+El paquete `json` permite serializar y deserializar json.
+
+.play -edit -numbers clase4/json.go
+
+* Http Client
+
+El paquete `http` permite crear clientes http.
+
+.play -edit -numbers clase4/http_client.go
+
+* Http Server
+
+El paquete `http` también permite crear servidores http.
+
+.play -edit -numbers clase4/http_server.go
+
+* Http Multiplexer
+
+La idea de multiplexar requests http es decidir a qué función invocar dependiendo del request que se hace.
+
+Go viene con un multiplexador básico.
+
+Uno de los más utilizados es `gorilla mux`.
+
+Uno de los más eficientes es `http router`.
+
+* DB
+
+El paquete `sql` provee todo lo necesario para trabajar con bases de datos SQL.
+
+Vamos a instalar el driver de `mysql`:
+
+  go get -u github.com/go-sql-driver/mysql
+
+Y ahora vamos a crear una conexión a la DB:
+
+  import "database/sql"
+  import _ "github.com/go-sql-driver/mysql"
+
+  db, err := sql.Open("mysql", "user:password@/dbname")
+  defer db.Close()
+
+* DB - Insert
+
+  insert, err := db.Query("INSERT INTO test VALUES ( 2, 'TEST' )")
+
+  if err != nil {
+    ...
+  }
+
+  defer insert.Close()
+
+* DB - Select
+
+  results, err := db.Query("SELECT id, name FROM tags")
+  if err != nil {
+    ...
+  }
+
+  for results.Next() {
+    var tag Tag
+
+    err = results.Scan(&tag.ID, &tag.Name)
+    if err != nil {
+      ...
+    }
+  }

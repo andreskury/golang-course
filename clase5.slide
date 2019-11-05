@@ -1,0 +1,49 @@
+Golang para Programadores
+Clase 5 - Buenas prácticas
+
+Jonathan Leibiusky
+CTO, iúnigo
+jonas@iunigo.com
+https://iunigo.com.ar
+@xetorthio
+
+* Recap
+
+Qué es lo que ya sabemos?
+
+- Variables, constantes, tipos
+- Funciones
+- Referencias y valores
+- Estructuras e interfaces
+- Concurrencia: channels, waitgroups, mutex
+- Paquetes y Módulos
+- JSON
+- HTTP client y server
+- DB
+
+.image https://miro.medium.com/max/600/1*yh90bW8jL4f8pOTZTvbzqw.png
+
+* Tests
+
+El paquete `testing` ofrece todo lo necesario para crear test.
+
+Los archivos deben tener terminación `_test.go`.
+
+Las funciones de testeo deben comenzar con `Test`.
+
+* Coverage
+
+Se puede obtener el test coverage con `go` de forma nativa.
+
+  go test -coverprofile cover.out fmt
+  go tool cover -html=cover.out -o cover.html 
+
+* Iteraciones, referencias y goroutines
+
+Mucho cuidado con referencias y goroutines cuando están iterando!
+
+* Evitar nesteo manejando errores primero
+
+* Separar mucho código en varios archivos del mismo paquete
+
+* Evitar APIs asincrónicas
